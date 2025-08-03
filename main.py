@@ -8,7 +8,7 @@ app = FastAPI()
 def read_root():
     return {"message": "NutriScan API is live!"}
 
-@app.get("/scan/{barcode}")
+@app.get("/product/{barcode}")
 def get_product_info(barcode: str):
     url = f"https://world.openfoodfacts.org/api/v0/product/{barcode}.json"
     res = requests.get(url)
@@ -25,3 +25,4 @@ def get_product_info(barcode: str):
         }
     else:
         return {"error": "Product not found"}
+
