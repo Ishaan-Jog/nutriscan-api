@@ -18,7 +18,7 @@ def get_gemini_summary(text):
     nutriscore_response = model.generate_content(nutriscore_prompt)
     nutriscore = nutriscore_response.text.strip()
 
-    rcmd_intake_prompt = f"Given a food product with the following details:\n{text}\n\nProvide a recommended daily intake in a suitable unit. Just return the value in numbers, no text."
+    rcmd_intake_prompt = f"Given a food product with the following details:\n{text}\n\nProvide a recommended daily intake in a suitable unit (grams or individual units like one piece, etc.). Just return the value in numbers along with its unit, no text."
     rcmd_intake_response = model.generate_content(rcmd_intake_prompt)
     rcmd_intake = rcmd_intake_response.text.strip()
 
@@ -66,3 +66,4 @@ def get_product_info(barcode: str):
         }
     else:
         return {"error": "Product not found"}
+
