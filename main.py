@@ -10,11 +10,11 @@ genai.configure(api_key=GOOGLE_API_KEY)
 
 def get_gemini_summary(text):
     model = genai.GenerativeModel('gemini-2.5-flash')
-    price_prompt = f"Given a food product with the following details:\n{text}\n\nProvide its exact price in Indian Rupees. Just return the value in numbers, no text. You can check online for the latest price. If price is not available, just return 'N/A'."
+    price_prompt = f"Given a food product with the following details:\n{text}\n\nProvide its exact price in Indian Rupees. Just return the value in numbers, no text. You can check online for the latest price. Make sure the price is correct. Check multiple times for accuracy. If price is not available, just return 'N/A'."
     price_response = model.generate_content(price_prompt)
     price = price_response.text.strip()
 
-    nutriscore_prompt = f"Given a food product with the following details:\n{text}\n\nProvide a NutriScore out of 10 based on its nutritional content. Just return the number, no text."
+    nutriscore_prompt = f"Given a food product with the following details:\n{text}\n\nProvide a NutriScore out of 10 based on its nutritional content. Just return a number, no text or anything."
     nutriscore_response = model.generate_content(nutriscore_prompt)
     nutriscore = nutriscore_response.text.strip()
 
@@ -66,4 +66,5 @@ def get_product_info(barcode: str):
         }
     else:
         return {"error": "Product not found"}
+
 
